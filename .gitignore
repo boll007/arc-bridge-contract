@@ -33,3 +33,4 @@ cache
 artifacts
 .env.staging.down
 .env.staging.up
+.env
