@@ -1,0 +1,41 @@
+name: Integration
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  CACHE_VERSION: 20211006
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node.js v14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: make init
+
+      - name: Lint Code
+        run: make lint
+
+      - name: Run Tests and Collect Coverage
+        run: make test
+        env:
+          RINKEBY_PRIVATE_KEY: ${{ secrets.RINKEBY_PRIVATE_KEY }}
+
+      - name: Report Node Coverage
+        uses: romeovs/lcov-reporter-action@v0.2.19
+        with:
+          github-token: ${{ secrets.GIT_HUB_TOKEN }}
+          lcov-file: ./coverage/lcov.info

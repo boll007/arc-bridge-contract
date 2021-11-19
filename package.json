@@ -11,6 +11,9 @@
     "coverage": "hardhat coverage",
     "codesize": "hardhat size-contracts"
   },
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
