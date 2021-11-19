@@ -2,14 +2,16 @@
   "name": "@arcblock/rollup-contract",
   "version": "0.1.0",
   "scripts": {
-    "deploy": "hardhat run scripts/deploy.js --network rinkeby && node scripts/copy-abi.js",
-    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js --network rinkeby",
+    "prepublishOnly": "npm run clean && npm run build && node scripts/copy-abi.js",
     "lint": "eslint test mock",
-    "clean": "rm -rf cache artifacts coverage",
+    "test": "hardhat test",
+    "clean": "hardhat clean",
+    "build": "hardhat compile",
     "coverage": "hardhat coverage",
     "codesize": "hardhat size-contracts"
   },
-  "dependencies": {
+  "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@ocap/mcrypto": "1.13.57",
@@ -22,9 +24,7 @@
     "hardhat": "^2.6.2",
     "hardhat-contract-sizer": "^2.1.1",
     "web3": "^1.5.2",
-    "web3-utils": "^1.5.2"
-  },
-  "devDependencies": {
+    "web3-utils": "^1.5.2",
     "@arcblock/eslint-config": "latest",
     "@arcblock/eslint-config-base": "0.1.8",
     "babel-eslint": "^10.1.0",

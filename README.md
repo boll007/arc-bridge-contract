@@ -13,7 +13,7 @@ RINKEBY_PRIVATE_KEY=""
 
 1. 开发
 
-在 contracts 目录下的 `ERC20Rollup.sol` 文件中进行合约编写。
+在 contracts 目录下的 `DIDRollup.sol` 文件中进行合约编写。
 
 2. 调试
 
