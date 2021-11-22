@@ -1,3 +1,3 @@
-## DID Rollup Contract
+## ArcBridge Contract
 
-Solidity contracts that powers DID Rollup.
+Solidity contracts that powers ArcBridge.

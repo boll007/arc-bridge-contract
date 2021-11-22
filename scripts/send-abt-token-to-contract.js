@@ -10,7 +10,7 @@ async function main() {
   const rollupContractAddress = process.env.DID_ROLLUP_CONTRACT_ADDRESS;
   const tokenContractAddress = process.env.ERC20_TOKEN_ADDRESS;
   if (!rollupContractAddress) {
-    throw new Error('Please set did rollup contract address in the .env first');
+    throw new Error('Please set arc-bridge contract address in the .env first');
   }
   if (!tokenContractAddress) {
     throw new Error('Please set abt token contract address in the .env first');

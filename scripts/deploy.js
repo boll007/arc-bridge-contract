@@ -17,7 +17,7 @@ async function main() {
   const minSingerCount = Math.max(process.env.MIN_SINGER_COUNT || 1, seedValidators.length);
 
   if (!tokenAddress) {
-    throw new Error('Please set did rollup contract address in the .env first');
+    throw new Error('Please set arc-bridge contract address in the .env first');
   }
   console.log('deploy config', { tokenAddress, seedValidators, minSingerCount });
 

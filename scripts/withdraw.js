@@ -8,12 +8,12 @@ const { tx1, genWithdrawProof, blocks } = require('../mock/blocks');
 async function main() {
   const rollupContractAddress = process.env.DID_ROLLUP_CONTRACT_ADDRESS;
   if (!rollupContractAddress) {
-    throw new Error('Please set did rollup contract address in the .env first');
+    throw new Error('Please set arc-bridge contract address in the .env first');
   }
   console.log(`ERC20Rollup Contract Address=>${rollupContractAddress}`);
 
   const [deployer] = await ethers.getSigners();
-  console.log('Test did rollup add validator with the account:', deployer.address);
+  console.log('Test arc-bridge add validator with the account:', deployer.address);
 
   // create ERC20Rollup contract instance
   const contract = new ethers.Contract(rollupContractAddress, contractJson.abi, deployer);
