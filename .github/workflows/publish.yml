@@ -27,6 +27,7 @@ jobs:
         run: make build
         env:
           RINKEBY_PRIVATE_KEY: ${{ secrets.RINKEBY_PRIVATE_KEY }}
+          INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
 
       - name: Publish
         uses: JS-DevTools/npm-publish@v1
