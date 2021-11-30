@@ -1,3 +1,7 @@
+## 0.1.3 (November 30, 2021)
+
+- fix #1
+
 ## 0.1.2 (November 22, 2021)
 
 - chore: rename to arc-bridge
