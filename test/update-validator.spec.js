@@ -34,9 +34,7 @@ describe('UpdateValidator', () => {
     ).to.be.revertedWith('E108');
 
     await expect(rollup.updateValidator(Buffer.alloc(32), validatorsToAdd, signatures, 0)).to.be.revertedWith('E101');
-
     await expect(rollup.updateValidator(hexToBytes(validatorsHash), [], signatures, 0)).to.be.revertedWith('E102');
-
     await expect(rollup.updateValidator(hexToBytes(validatorsHash), validatorsToAdd, [], 0)).to.be.revertedWith('E001');
 
     const signaturesWithWaitUpdateValidators = getSignatures(validatorsHash, [...seedSigners, validator1]);
@@ -61,6 +59,9 @@ describe('UpdateValidator', () => {
     await rollup.updateValidator(hexToBytes(validatorsHash), validatorsToAdd, signatures, 0);
     await canNotAddExistValidator();
     await canNotRemoveNotExistValidator();
+
+    // Should be able to remove validator even though there is not much left
+    await rollup.updateValidator(hexToBytes(validatorsHash), validatorsToAdd, signatures, 1);
   });
 
   const signatureCountInvalid = async () => {

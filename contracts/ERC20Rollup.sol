@@ -858,7 +858,7 @@ contract ERC20Rollup is Ownable, Pausable {
     require(keccak256(validatorsJoined) == validatorsHash, 'E108');
 
     // check signatures
-    checkSignatures(signatures, validatorsHash);
+    checkSignatures(signatures, validatorsHash, action == ValidatorAction.Remove ? validatorsToUpdate.length : 0);
 
     // update validators
     if (action == ValidatorAction.Add) {
@@ -908,7 +908,7 @@ contract ERC20Rollup is Ownable, Pausable {
     }
 
     // verify signatures
-    checkSignatures(signatures, blockHash);
+    checkSignatures(signatures, blockHash, 0);
 
     // update blocks
     blocks.push(Block(height, blockHash, merkleRoot, txsHash));
@@ -988,12 +988,16 @@ contract ERC20Rollup is Ownable, Pausable {
     return (blocks[height - 1].blockHash, blocks[height - 1].merkleRoot, blocks[height - 1].txsHash);
   }
 
-  function checkSignatures(Signature[] calldata signatures, bytes32 message) internal view {
+  function checkSignatures(
+    Signature[] calldata signatures,
+    bytes32 message,
+    uint256 shrinkSize
+  ) internal view {
     // ensure signature count
-    if (_validators.length < minSignerCount) {
-      require(signatures.length == _validators.length, 'E002');
-    } else {
+    if (_validators.length - shrinkSize >= minSignerCount ) {
       require(signatures.length >= minSignerCount, 'E003');
+    } else {
+      require(signatures.length == _validators.length - shrinkSize, 'E002');
     }
 
     // ensure seed validator signed
