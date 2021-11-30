@@ -25,6 +25,8 @@ jobs:
 
       - name: Build
         run: make build
+        env:
+          RINKEBY_PRIVATE_KEY: ${{ secrets.RINKEBY_PRIVATE_KEY }}
 
       - name: Publish
         uses: JS-DevTools/npm-publish@v1
