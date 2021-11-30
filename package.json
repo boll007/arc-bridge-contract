@@ -6,7 +6,7 @@
   "version": "0.1.3",
   "scripts": {
     "deploy": "hardhat run scripts/deploy.js --network rinkeby",
-    "prepublishOnly": "npm run clean && npm run build && node scripts/copy-abi.js",
+    "prepublishOnly": "node scripts/copy-abi.js",
     "lint": "eslint test mock",
     "test": "hardhat test",
     "clean": "hardhat clean",
